@@ -8,13 +8,52 @@
 </head>
 <body class="bg-gray-100 min-h-screen p-8">
 
-    <div class="max-w-6xl mx-auto">
+    <div class="max-w-6xl mx-auto space-y-8">
 
         {{-- Header --}}
-        <div class="mb-6">
-            <h1 class="text-3xl font-bold text-gray-800">Daftar Produk Laptop</h1>
-            <p class="text-gray-500 mt-1">Menampilkan semua data produk dari database</p>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Daftar & Input Produk Laptop</h1>
+            <p class="text-gray-500 mt-1">Kelola data produk dan tampilkan langsung dari database</p>
         </div>
+
+        {{-- FORM INPUT PRODUK (BARU) --}}
+        <div class="bg-white rounded-2xl shadow-md p-6">
+            <div class="mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Input Produk</h2>
+            </div>
+            
+            <form method="POST" action="{{ route('produk.simpan') }}" class="space-y-4">
+                @csrf
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <label for="nama" class="font-medium text-gray-700">Nama:</label>
+                    <div class="md:col-span-3">
+                        <input type="text" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" id="nama" name="nama" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+                    <label for="deskripsi" class="font-medium text-gray-700 pt-2">Deskripsi:</label>
+                    <div class="md:col-span-3">
+                        <textarea class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <label for="harga" class="font-medium text-gray-700">Harga:</label>
+                    <div class="md:col-span-3">
+                        <input type="number" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" id="harga" name="harga" required>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg shadow transition-colors duration-150">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+        {{-- ============================================================= --}}
 
         {{-- Table Card --}}
         <div class="bg-white rounded-2xl shadow-md overflow-hidden">
